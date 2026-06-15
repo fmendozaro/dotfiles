@@ -1,0 +1,22 @@
+//To permanently remap your Right Option key to act as a Right Arrow key, you can use a built-in macOS tool called hidutil. Because hidutil resets every time you turn off your Mac, you will need a script called a "Launch Agent" to run the code automatically in the background every time you log in.  
+Bash
+cat << 'EOF' > ~/Library/LaunchAgents/com.local.rightoptiontoarrow.plist
+
+
+
+
+    Label
+    com.local.rightoptiontoarrow
+    ProgramArguments
+    
+        /usr/bin/hidutil
+        property
+        --set
+        {"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x7000000E6,"HIDKeyboardModifierMappingDst":0x70000004F}]}
+    
+    RunAtLoad
+    
+
+
+EOF
+launchctl load ~/Library/LaunchAgents/com.local.rightoptiontoarrow.plist
